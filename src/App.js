@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+const App = () => {
+
+  const objetos = [
+    {
+      Crescimento: "",
+      Nome: "MGLU13",
+      Preco: 99.9
+    },
+    {
+      Crescimento: "",
+      Nome: "PETR4",
+      Preco: 99.9
+    },
+    {
+      Crescimento: "",
+      Nome: "",
+      Preco: 99.9
+    }
+
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      {
+        objetos.map(o =>
+
+          <div key={o.Crescimento}>
+
+            <p>
+              {o.Nome}
+            </p>
+
+          </div>
+
+        )
+      }
+
     </div>
   );
 }
