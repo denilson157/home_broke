@@ -1,20 +1,22 @@
+import React, { Fragment } from 'react'
+import Acao from './Acao'
 
 const App = () => {
 
   const objetos = [
     {
-      Crescimento: "",
+      Crescimento: -12.32,
       Nome: "MGLU13",
       Preco: 99.9
     },
     {
-      Crescimento: "",
+      Crescimento: -7.32,
       Nome: "PETR4",
       Preco: 99.9
     },
     {
-      Crescimento: "",
-      Nome: "",
+      Crescimento: 15.66,
+      Nome: "OIBR4",
       Preco: 99.9
     }
 
@@ -23,15 +25,11 @@ const App = () => {
     <div className="App">
 
       {
-        objetos.map(o =>
+        objetos.map(acao =>
 
-          <div key={o.Crescimento}>
-
-            <p>
-              {o.Nome}
-            </p>
-
-          </div>
+          <Fragment key={acao.Crescimento}>
+            <Acao acao={acao} />
+          </Fragment>
 
         )
       }
