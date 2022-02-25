@@ -1,16 +1,13 @@
-import React from 'react'
-
-
-
-const Acao = ({ acao }) => {
+const Acao = ({ bitCoin }) => {
     return (
-
         <div>
-
             <p>
-                {acao.Nome}
+                {bitCoin.Nome}
+                |
+                Preço: {bitCoin.UltimoPreco} |
+                Preço Inicial: {bitCoin.PrecoInicial} |
+                Diferença: {bitCoin.Porcentagem} |
             </p>
-
         </div>
     )
 }

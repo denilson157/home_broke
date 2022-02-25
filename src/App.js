@@ -1,40 +1,50 @@
-import React, { Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import Acao from './Acao'
 
 const App = () => {
 
-  const objetos = [
-    {
-      Crescimento: -12.32,
-      Nome: "MGLU13",
-      Preco: 99.9
-    },
-    {
-      Crescimento: -7.32,
-      Nome: "PETR4",
-      Preco: 99.9
-    },
-    {
-      Crescimento: 15.66,
-      Nome: "OIBR4",
-      Preco: 99.9
-    }
+  const [moedas, setMoedas] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  ]
+  useEffect(() => {
+    setLoading(true)
+    fetch("https://api.wazirx.com/sapi/v1/tickers/24hr")
+      .then((resp) => resp.json())
+      .then((moedas) => {
+        console.log(moedas)
+        setMoedas(
+
+          (moedas || []).slice(0, 5).map(x => ({
+            Nome: x.baseAsset,
+            UltimoPreco: x.lastPrice,
+            PrecoInicial: x.openPrice,
+            Porcentagem: Math.round((x.openPrice * 100) / x.lastPrice)
+          })
+
+          ))
+
+
+
+      })
+      .finally(() => setLoading(false))
+
+  }, [])
+
   return (
-    <div className="App">
+    <>
 
       {
-        objetos.map(acao =>
-
-          <Fragment key={acao.Crescimento}>
-            <Acao acao={acao} />
-          </Fragment>
-
-        )
+        loading ?
+          <h1>
+            Carregando
+          </h1>
+          :
+          moedas.map((bitCoin, index) =>
+            <Acao key={`${bitCoin.Nome}.${index}`} bitCoin={bitCoin} />
+          )
       }
 
-    </div>
+    </>
   );
 }
 
