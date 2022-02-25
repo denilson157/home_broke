@@ -14,7 +14,7 @@ const App = () => {
         console.log(moedas)
         setMoedas(
 
-          (moedas || []).slice(0, 5).map(x => ({
+          (moedas || []).slice(0, 50).map(x => ({
             Nome: x.baseAsset,
             UltimoPreco: x.lastPrice,
             PrecoInicial: x.openPrice,
