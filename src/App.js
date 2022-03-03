@@ -11,14 +11,14 @@ const App = () => {
     fetch("https://api.wazirx.com/sapi/v1/tickers/24hr")
       .then((resp) => resp.json())
       .then((moedas) => {
-        console.log(moedas)
+
         setMoedas(
 
           (moedas || []).slice(0, 50).map(x => ({
             Nome: x.baseAsset,
             UltimoPreco: x.lastPrice,
             PrecoInicial: x.openPrice,
-            Porcentagem: Math.round((x.openPrice * 100) / x.lastPrice)
+            Porcentagem: Math.round(((x.openPrice * 100) / x.lastPrice) - 100)
           })
 
           ))
