@@ -25,12 +25,13 @@ const Acao = ({ bitCoin }) => {
         justify-content: center;
         text-align: center;
         
-        font-size: 1.875rem;
-        min-width: 50px;
+        font-size: 1.775rem;
+        min-width: 90px;
+        padding: 0 10px;
 
 
-        background-color: #17a2b8;
-    `
+        background-color: #17a2b8d4;
+        `
 
     const InfoAcao = styled.div`
         display: flex;
@@ -48,7 +49,7 @@ const Acao = ({ bitCoin }) => {
     `
 
     const NomeAcao = styled(TextoAcao)`
-        font-size: 1.875rem;
+        font-size: 1.775rem;
 
     `
 
@@ -58,35 +59,51 @@ const Acao = ({ bitCoin }) => {
     `
 
     const PrecoAtual = styled(TextoAcao)`
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     `
 
+    const Icone = styled.span.attrs({
+        className: 'material-icons',
+        value: `${props => props.value}`
+    })`
+        color: ${props => props.color}
+    `
 
+    const Porcentagem = styled.p`
+        display: inline;
+        margin: 0 0 0 8px;
+    `
+
+    const SimboloPorcentagem = styled.span`
+        font-size: 1.2rem;
+        margin: 0 8px 0 0
+    `
 
     return (
         <BoxAcao>
             <DiferencaAcao>
                 <div>
-                    {
-                        bitCoin.Porcentagem < 0 &&
-                        <i>
-                            {`<`}
-                        </i>
-                    }
-                    {bitCoin.Porcentagem}
-                    {
-                        bitCoin.Porcentagem > 0 &&
-                        <i>
-                            {`>`}
-                        </i>
-                    }
+
+                    <Icone color={bitCoin.Porcentagem < 0 ? "red" : "#17a2b8d4"}>
+                        trending_down
+                    </Icone>
+
+                    <Porcentagem>
+                        {Math.abs(bitCoin.Porcentagem)}
+                    </Porcentagem>
+                    <SimboloPorcentagem>%</SimboloPorcentagem>
+
+                    <Icone color={bitCoin.Porcentagem > 0 ? "#1bff00" : "#17a2b8d4"}>
+                        trending_up
+                    </Icone>
+
                 </div>
             </DiferencaAcao>
-            
+
             <InfoAcao>
 
                 <NomeAcao>
-                    {bitCoin.Nome}
+                    {bitCoin.Nome.toUpperCase()}
                 </NomeAcao>
 
                 <PrecoInicial>
